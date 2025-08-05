@@ -86,7 +86,7 @@ const TableSearch = () => {
   );
 };
 
-const FormModal = ({ table, type, id, data }) => {
+const FormModal = ({ table, type, id, data }: { table: string; type: string; id?: string; data?: any }) => {
   const [isOpen, setIsOpen] = useState(false);
   
   const getButtonContent = () => {
@@ -176,7 +176,7 @@ const FormModal = ({ table, type, id, data }) => {
   );
 };
 
-const Table = ({ columns, renderRow, data }) => (
+const Table = ({ columns, renderRow, data }: { columns: { header: string; accessor: string; className?: string }[]; renderRow: (item: any, index: number) => React.ReactNode; data: any[] }) => (
   <table className="w-full mt-4">
     <thead>
       <tr className="text-left text-gray-500 text-sm">
@@ -185,11 +185,11 @@ const Table = ({ columns, renderRow, data }) => (
         ))}
       </tr>
     </thead>
-    <tbody>{data?.map((item) => renderRow(item))}</tbody>
+    <tbody>{data?.map((item, index) => renderRow(item, index))}</tbody>
   </table>
 );
 
-const Pagination = ({ currentPage, totalPages, onPageChange }) => (
+const Pagination = ({ currentPage, totalPages, onPageChange }: { currentPage: number; totalPages: number; onPageChange: (page: number) => void }) => (
   <div className="p-4 flex items-center justify-between text-gray-500">
     <button
       disabled={currentPage <= 1}

@@ -63,7 +63,15 @@ const schema = z.object({
 type Inputs = z.infer<typeof schema>;
 
 // InputField component
-const InputField = ({ label, name, type = "text", register, error, defaultValue = "", inputProps = {} }) => (
+const InputField = ({ label, name, type = "text", register, error, defaultValue = "", inputProps = {} }: {
+  label: string;
+  name: string;
+  type?: string;
+  register: any;
+  error?: any;
+  defaultValue?: string;
+  inputProps?: any;
+}) => (
   <div className="flex flex-col gap-2 w-full md:w-1/4">
     <label className="text-xs text-gray-500">{label}</label>
     <input
@@ -79,7 +87,15 @@ const InputField = ({ label, name, type = "text", register, error, defaultValue 
 );
 
 // Dynamic section component for arrays
-const DynamicSection = ({ title, fields, onAdd, onRemove, register, errors, renderFields }) => (
+const DynamicSection = ({ title, fields, onAdd, onRemove, register, errors, renderFields }: {
+  title: string;
+  fields: any[];
+  onAdd: () => void;
+  onRemove: (index: number) => void;
+  register: any;
+  errors: any;
+  renderFields: (field: any, index: number, register: any, errors: any) => React.ReactNode;
+}) => (
   <div className="border border-gray-200 rounded-lg p-4 bg-gray-50">
     <div className="flex justify-between items-center mb-4">
       <h3 className="text-sm font-medium text-gray-700">{title}</h3>
@@ -112,7 +128,7 @@ const DynamicSection = ({ title, fields, onAdd, onRemove, register, errors, rend
   </div>
 );
 
-const InfluencerForm = ({ type, data }) => {
+const InfluencerForm = ({ type, data }: { type: string; data?: any }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   
   const defaultValues = {
