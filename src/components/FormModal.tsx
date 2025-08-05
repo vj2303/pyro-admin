@@ -15,12 +15,16 @@ const TeacherForm = dynamic(() => import("./forms/TeacherForm"), {
 const StudentForm = dynamic(() => import("./forms/StudentForm"), {
   loading: () => <h1>Loading...</h1>,
 });
+const InfluencerForm = dynamic(() => import("./forms/InfluencerForm"), {
+  loading: () => <h1>Loading...</h1>,
+});
 
 const forms: {
   [key: string]: (type: "create" | "update", data?: any) => JSX.Element;
 } = {
   teacher: (type, data) => <TeacherForm type={type} data={data} />,
-  student: (type, data) => <StudentForm type={type} data={data} />
+  student: (type, data) => <StudentForm type={type} data={data} />,
+  influencer: (type, data) => <InfluencerForm type={type} data={data} />
 };
 
 const FormModal = ({
@@ -32,6 +36,7 @@ const FormModal = ({
   table:
     | "teacher"
     | "student"
+    | "influencer"
     | "parent"
     | "subject"
     | "class"
